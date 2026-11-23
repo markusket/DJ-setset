@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DJ_PLAYLISTS Version="1.0.0">
+  <PRODUCT Name="rekordbox" Version="7.0.4" Company="AlphaTheta"/>
+  <COLLECTION Entries="60">
+    <TRACK TrackID="10000137" Name="Pulse Rise" Artist="Lumo" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="11158480" TotalTime="333" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="122.00" DateAdded="2023-09-07" BitRate="320" SampleRate="44100" Comments="" PlayCount="0" Rating="0" Location="file://localhost/Users/dj/Music/Tech_House/Lumo%20-%20Pulse%20Rise.mp3" Remixer="" Tonality="G" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x00FF00">
+      <TEMPO Inizio="0.025" Bpm="122.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10000274" Name="Drift Valo" Artist="Kalle &amp; Kide" Composer="" Album="" Grouping="" Genre="Techno" Kind="MP3 File" Size="15490656" TotalTime="401" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="135.00" DateAdded="2023-10-19" BitRate="320" SampleRate="44100" Comments="/* Groovy / Peak Time */" PlayCount="2" Rating="0" Location="file://localhost/Users/dj/Music/Techno/Kalle%20%26%20Kide%20-%20Drift%20Valo.mp3" Remixer="" Tonality="Bbm" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="135.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10000411" Name="Pulse Neon (Extended Mix)" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="11952451" TotalTime="386" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="126.00" DateAdded="2024-02-19" BitRate="320" SampleRate="44100" Comments="" PlayCount="5" Rating="255" Location="file://localhost/Users/dj/Music/Melodic_Techno/Kaiku%20-%20Pulse%20Neon%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Ebm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="126.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10000548" Name="Groove Aalto" Artist="Kalle &amp; Kide" Composer="" Album="" Grouping="" Genre="Disco" Kind="AIFF File" Size="24656906" TotalTime="414" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="114.00" DateAdded="2026-06-15" BitRate="320" SampleRate="44100" Comments="/* Groovy / Warm Up */" PlayCount="5" Rating="153" Location="file://localhost/Users/dj/Music/Disco/Kalle%20%26%20Kide%20-%20Groove%20Aalto.aiff" Remixer="" Tonality="Dm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="114.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10000685" Name="Pulse Aalto" Artist="Mira Saaristo" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="18074688" TotalTime="374" DiscNumber="0" TrackNumber="0" Year="2022" AverageBpm="122.00" DateAdded="2025-12-15" BitRate="320" SampleRate="44100" Comments="Hyvä breikki" PlayCount="1" Rating="204" Location="file://localhost/Users/dj/Music/Afro_House/Mira%20Saaristo%20-%20Pulse%20Aalto.mp3" Remixer="" Tonality="Bm" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="122.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10000822" Name="Rise Pulse (Extended Mix)" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Deep House" Kind="MP3 File" Size="9315577" TotalTime="411" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="122.00" DateAdded="2025-06-23" BitRate="320" SampleRate="44100" Comments="/* Closing / Dark */" PlayCount="1" Rating="204" Location="file://localhost/Users/dj/Music/Deep_House/Kaiku%20-%20Rise%20Pulse%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x660099">
+      <TEMPO Inizio="0.025" Bpm="122.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10000959" Name="Valo Valo" Artist="The Ström Unit" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="10035728" TotalTime="427" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="126.50" DateAdded="2025-11-19" BitRate="320" SampleRate="44100" Comments="Energy 4" PlayCount="12" Rating="153" Location="file://localhost/Users/dj/Music/Tech_House/The%20Str%C3%B6m%20Unit%20-%20Valo%20Valo.mp3" Remixer="" Tonality="Cm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x00FF00">
+      <TEMPO Inizio="0.025" Bpm="126.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10001096" Name="Yö Deep" Artist="Lumo" Composer="" Album="" Grouping="" Genre="Techno" Kind="AIFF File" Size="24565588" TotalTime="255" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="134.00" DateAdded="2025-03-24" BitRate="320" SampleRate="44100" Comments="/* Groovy / Peak Time */" PlayCount="0" Rating="153" Location="file://localhost/Users/dj/Music/Techno/Lumo%20-%20Y%C3%B6%20Deep.aiff" Remixer="" Tonality="C" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x25FDE9">
+      <TEMPO Inizio="0.025" Bpm="134.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10001233" Name="Pulse Deep (Extended Mix)" Artist="Kalle &amp; Kide" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="12594478" TotalTime="449" DiscNumber="0" TrackNumber="0" Year="2022" AverageBpm="126.50" DateAdded="2025-12-14" BitRate="320" SampleRate="44100" Comments="" PlayCount="1" Rating="255" Location="file://localhost/Users/dj/Music/Melodic_Techno/Kalle%20%26%20Kide%20-%20Pulse%20Deep%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="C" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF0000">
+      <TEMPO Inizio="0.025" Bpm="126.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10001370" Name="Valo Pulse" Artist="Nightshift Collective" Composer="" Album="" Grouping="" Genre="Disco" Kind="MP3 File" Size="8404769" TotalTime="364" DiscNumber="0" TrackNumber="0" Year="2025" AverageBpm="115.00" DateAdded="2024-05-10" BitRate="320" SampleRate="44100" Comments="Hyvä breikki /* Dark / Warm Up */" PlayCount="0" Rating="51" Location="file://localhost/Users/dj/Music/Disco/Nightshift%20Collective%20-%20Valo%20Pulse.mp3" Remixer="" Tonality="G" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x0000FF">
+      <TEMPO Inizio="0.025" Bpm="115.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10001507" Name="Halo Halo" Artist="Lumo" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="9811700" TotalTime="356" DiscNumber="0" TrackNumber="0" Year="2025" AverageBpm="124.00" DateAdded="2026-07-13" BitRate="320" SampleRate="44100" Comments="" PlayCount="2" Rating="0" Location="file://localhost/Users/dj/Music/Afro_House/Lumo%20-%20Halo%20Halo.mp3" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x00FF00">
+      <TEMPO Inizio="0.025" Bpm="124.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10001644" Name="Drift Valo (Extended Mix)" Artist="Aurora Väinö" Composer="" Album="" Grouping="" Genre="Deep House" Kind="AIFF File" Size="19410307" TotalTime="393" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="120.50" DateAdded="2023-01-19" BitRate="320" SampleRate="44100" Comments="/* Warm Up / Peak Time */" PlayCount="0" Rating="204" Location="file://localhost/Users/dj/Music/Deep_House/Aurora%20V%C3%A4in%C3%B6%20-%20Drift%20Valo%20%28Extended%20Mix%29.aiff" Remixer="" Tonality="F#m" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="120.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10001781" Name="Yö Valo" Artist="Örkki Beats" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="12984527" TotalTime="402" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="125.50" DateAdded="2025-10-12" BitRate="320" SampleRate="44100" Comments="" PlayCount="2" Rating="0" Location="file://localhost/Users/dj/Music/Tech_House/%C3%96rkki%20Beats%20-%20Y%C3%B6%20Valo.mp3" Remixer="" Tonality="F#m" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x25FDE9">
+      <TEMPO Inizio="0.025" Bpm="125.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10001918" Name="Deep Deep" Artist="The Ström Unit" Composer="" Album="" Grouping="" Genre="Techno" Kind="MP3 File" Size="16883767" TotalTime="362" DiscNumber="0" TrackNumber="0" Year="2025" AverageBpm="133.00" DateAdded="2024-09-01" BitRate="320" SampleRate="44100" Comments="/* Warm Up / Peak Time */ Energy 8" PlayCount="0" Rating="204" Location="file://localhost/Users/dj/Music/Techno/The%20Str%C3%B6m%20Unit%20-%20Deep%20Deep.mp3" Remixer="" Tonality="Dm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="133.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10002055" Name="Yö Groove (Extended Mix)" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="16761572" TotalTime="372" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="124.00" DateAdded="2024-06-25" BitRate="320" SampleRate="44100" Comments="Hyvä breikki" PlayCount="0" Rating="204" Location="file://localhost/Users/dj/Music/Melodic_Techno/Kaiku%20-%20Y%C3%B6%20Groove%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="B" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x0000FF">
+      <TEMPO Inizio="0.025" Bpm="124.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10002192" Name="Sauna Drift" Artist="Lumo" Composer="" Album="" Grouping="" Genre="Disco" Kind="AIFF File" Size="14708134" TotalTime="372" DiscNumber="0" TrackNumber="0" Year="2022" AverageBpm="116.00" DateAdded="2025-12-01" BitRate="320" SampleRate="44100" Comments="/* Closing / Warm Up */" PlayCount="0" Rating="102" Location="file://localhost/Users/dj/Music/Disco/Lumo%20-%20Sauna%20Drift.aiff" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="116.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10002329" Name="Aalto Halo" Artist="Mira Saaristo" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="19727933" TotalTime="333" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="124.50" DateAdded="2024-02-08" BitRate="320" SampleRate="44100" Comments="" PlayCount="2" Rating="51" Location="file://localhost/Users/dj/Music/Afro_House/Mira%20Saaristo%20-%20Aalto%20Halo.mp3" Remixer="" Tonality="Gm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF0000">
+      <TEMPO Inizio="0.025" Bpm="124.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10002466" Name="Halo Halo (Extended Mix)" Artist="The Ström Unit" Composer="" Album="" Grouping="" Genre="Deep House" Kind="MP3 File" Size="10844693" TotalTime="453" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="117.50" DateAdded="2023-07-26" BitRate="320" SampleRate="44100" Comments="/* Dark / Vocal */" PlayCount="12" Rating="51" Location="file://localhost/Users/dj/Music/Deep_House/The%20Str%C3%B6m%20Unit%20-%20Halo%20Halo%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="117.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10002603" Name="Sauna Kuu" Artist="Signal/Noise" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="23541088" TotalTime="342" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="123.50" DateAdded="2023-12-06" BitRate="320" SampleRate="44100" Comments="" PlayCount="0" Rating="51" Location="file://localhost/Users/dj/Music/Tech_House/Signal/Noise%20-%20Sauna%20Kuu.mp3" Remixer="" Tonality="Am" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="123.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10002740" Name="Deep Sauna" Artist="Örkki Beats" Composer="" Album="" Grouping="" Genre="Techno" Kind="AIFF File" Size="13231552" TotalTime="380" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="131.50" DateAdded="2024-01-01" BitRate="320" SampleRate="44100" Comments="Hyvä breikki /* Dark / Vocal */" PlayCount="30" Rating="255" Location="file://localhost/Users/dj/Music/Techno/%C3%96rkki%20Beats%20-%20Deep%20Sauna.aiff" Remixer="" Tonality="Ab" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="131.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10002877" Name="Aalto Pulse (Extended Mix)" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="8939313" TotalTime="304" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="126.00" DateAdded="2025-09-08" BitRate="320" SampleRate="44100" Comments="Energy 6" PlayCount="30" Rating="204" Location="file://localhost/Users/dj/Music/Melodic_Techno/Kaiku%20-%20Aalto%20Pulse%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Gm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="126.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003014" Name="Rise Pulse" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Disco" Kind="MP3 File" Size="22113942" TotalTime="451" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="113.50" DateAdded="2024-09-05" BitRate="320" SampleRate="44100" Comments="/* Closing / Groovy */" PlayCount="5" Rating="204" Location="file://localhost/Users/dj/Music/Disco/Kaiku%20-%20Rise%20Pulse.mp3" Remixer="" Tonality="Am" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x25FDE9">
+      <TEMPO Inizio="0.025" Bpm="113.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003151" Name="Halo Yö" Artist="Nightshift Collective" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="12749930" TotalTime="361" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="121.00" DateAdded="2023-09-02" BitRate="320" SampleRate="44100" Comments="" PlayCount="1" Rating="255" Location="file://localhost/Users/dj/Music/Afro_House/Nightshift%20Collective%20-%20Halo%20Y%C3%B6.mp3" Remixer="" Tonality="E" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x0000FF">
+      <TEMPO Inizio="0.025" Bpm="121.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003288" Name="Deep Valo (Extended Mix)" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Deep House" Kind="AIFF File" Size="9415959" TotalTime="437" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="117.00" DateAdded="2026-09-01" BitRate="320" SampleRate="44100" Comments="/* Warm Up / Vocal */" PlayCount="30" Rating="0" Location="file://localhost/Users/dj/Music/Deep_House/Kaiku%20-%20Deep%20Valo%20%28Extended%20Mix%29.aiff" Remixer="" Tonality="D" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="117.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003425" Name="Groove Halo" Artist="Örkki Beats" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="23178206" TotalTime="370" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="125.50" DateAdded="2026-09-08" BitRate="320" SampleRate="44100" Comments="Hyvä breikki" PlayCount="12" Rating="204" Location="file://localhost/Users/dj/Music/Tech_House/%C3%96rkki%20Beats%20-%20Groove%20Halo.mp3" Remixer="" Tonality="Fm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x0000FF">
+      <TEMPO Inizio="0.025" Bpm="125.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003562" Name="Deep Pulse" Artist="Mira Saaristo" Composer="" Album="" Grouping="" Genre="Techno" Kind="MP3 File" Size="18602522" TotalTime="258" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="135.00" DateAdded="2024-07-03" BitRate="320" SampleRate="44100" Comments="/* Closing / Dark */" PlayCount="0" Rating="255" Location="file://localhost/Users/dj/Music/Techno/Mira%20Saaristo%20-%20Deep%20Pulse.mp3" Remixer="" Tonality="Cm" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="135.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003699" Name="Aalto Sauna (Extended Mix)" Artist="Nightshift Collective" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="16492889" TotalTime="466" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="125.00" DateAdded="2026-04-24" BitRate="320" SampleRate="44100" Comments="" PlayCount="0" Rating="153" Location="file://localhost/Users/dj/Music/Melodic_Techno/Nightshift%20Collective%20-%20Aalto%20Sauna%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="125.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003836" Name="Pulse Aalto" Artist="Mira Saaristo" Composer="" Album="" Grouping="" Genre="Disco" Kind="AIFF File" Size="19966006" TotalTime="321" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="119.50" DateAdded="2025-01-11" BitRate="320" SampleRate="44100" Comments="/* Vocal / Closing */ Energy 6" PlayCount="5" Rating="153" Location="file://localhost/Users/dj/Music/Disco/Mira%20Saaristo%20-%20Pulse%20Aalto.aiff" Remixer="" Tonality="D" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="119.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10003973" Name="Kuu Groove" Artist="Signal/Noise" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="11786616" TotalTime="475" DiscNumber="0" TrackNumber="0" Year="2025" AverageBpm="123.00" DateAdded="2024-02-03" BitRate="320" SampleRate="44100" Comments="" PlayCount="1" Rating="102" Location="file://localhost/Users/dj/Music/Afro_House/Signal/Noise%20-%20Kuu%20Groove.mp3" Remixer="" Tonality="Em" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="123.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10004110" Name="Pulse Rise (Extended Mix)" Artist="DJ Pohjoistuuli" Composer="" Album="" Grouping="" Genre="Deep House" Kind="MP3 File" Size="24596426" TotalTime="419" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="121.50" DateAdded="2023-05-02" BitRate="320" SampleRate="44100" Comments="Hyvä breikki /* Warm Up / Groovy */" PlayCount="30" Rating="255" Location="file://localhost/Users/dj/Music/Deep_House/DJ%20Pohjoistuuli%20-%20Pulse%20Rise%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Abm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x00FF00">
+      <TEMPO Inizio="0.025" Bpm="121.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10004247" Name="Neon Yö" Artist="Kalle &amp; Kide" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="10809932" TotalTime="395" DiscNumber="0" TrackNumber="0" Year="2025" AverageBpm="123.50" DateAdded="2024-02-09" BitRate="320" SampleRate="44100" Comments="" PlayCount="30" Rating="0" Location="file://localhost/Users/dj/Music/Tech_House/Kalle%20%26%20Kide%20-%20Neon%20Y%C3%B6.mp3" Remixer="" Tonality="D" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="123.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10004384" Name="Groove Rise" Artist="Lumo" Composer="" Album="" Grouping="" Genre="Techno" Kind="AIFF File" Size="16000590" TotalTime="480" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="133.00" DateAdded="2024-05-02" BitRate="320" SampleRate="44100" Comments="/* Peak Time / Groovy */" PlayCount="0" Rating="51" Location="file://localhost/Users/dj/Music/Techno/Lumo%20-%20Groove%20Rise.aiff" Remixer="" Tonality="Cm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="133.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10004521" Name="Drift Neon (Extended Mix)" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="17077224" TotalTime="328" DiscNumber="0" TrackNumber="0" Year="2025" AverageBpm="127.00" DateAdded="2023-05-02" BitRate="320" SampleRate="44100" Comments="" PlayCount="0" Rating="0" Location="file://localhost/Users/dj/Music/Melodic_Techno/Kaiku%20-%20Drift%20Neon%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="F" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x0000FF">
+      <TEMPO Inizio="0.025" Bpm="127.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10004658" Name="Drift Groove" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Disco" Kind="MP3 File" Size="22501473" TotalTime="408" DiscNumber="0" TrackNumber="0" Year="2022" AverageBpm="120.00" DateAdded="2026-09-10" BitRate="320" SampleRate="44100" Comments="/* Closing / Peak Time */" PlayCount="12" Rating="51" Location="file://localhost/Users/dj/Music/Disco/Kaiku%20-%20Drift%20Groove.mp3" Remixer="" Tonality="Bbm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="120.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10004795" Name="Aalto Aalto" Artist="Mira Saaristo" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="9824976" TotalTime="454" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="121.50" DateAdded="2023-02-21" BitRate="320" SampleRate="44100" Comments="Hyvä breikki Energy 8" PlayCount="12" Rating="102" Location="file://localhost/Users/dj/Music/Afro_House/Mira%20Saaristo%20-%20Aalto%20Aalto.mp3" Remixer="" Tonality="G" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="121.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10004932" Name="Valo Sauna (Extended Mix)" Artist="Aurora Väinö" Composer="" Album="" Grouping="" Genre="Deep House" Kind="AIFF File" Size="17833411" TotalTime="251" DiscNumber="0" TrackNumber="0" Year="2022" AverageBpm="123.50" DateAdded="2024-03-09" BitRate="320" SampleRate="44100" Comments="/* Groovy / Warm Up */" PlayCount="2" Rating="0" Location="file://localhost/Users/dj/Music/Deep_House/Aurora%20V%C3%A4in%C3%B6%20-%20Valo%20Sauna%20%28Extended%20Mix%29.aiff" Remixer="" Tonality="Fm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="123.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10005069" Name="Groove Kuu" Artist="Lumo" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="18386704" TotalTime="295" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="125.00" DateAdded="2024-01-11" BitRate="320" SampleRate="44100" Comments="" PlayCount="2" Rating="0" Location="file://localhost/Users/dj/Music/Tech_House/Lumo%20-%20Groove%20Kuu.mp3" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="125.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10005206" Name="Sauna Drift" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Techno" Kind="MP3 File" Size="11011624" TotalTime="276" DiscNumber="0" TrackNumber="0" Year="2022" AverageBpm="132.00" DateAdded="2023-07-01" BitRate="320" SampleRate="44100" Comments="/* Peak Time / Vocal */" PlayCount="1" Rating="102" Location="file://localhost/Users/dj/Music/Techno/Kaiku%20-%20Sauna%20Drift.mp3" Remixer="" Tonality="Ab" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF0000">
+      <TEMPO Inizio="0.025" Bpm="132.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10005343" Name="Halo Groove (Extended Mix)" Artist="Kalle &amp; Kide" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="18943266" TotalTime="424" DiscNumber="0" TrackNumber="0" Year="2022" AverageBpm="122.50" DateAdded="2024-05-24" BitRate="320" SampleRate="44100" Comments="" PlayCount="5" Rating="255" Location="file://localhost/Users/dj/Music/Melodic_Techno/Kalle%20%26%20Kide%20-%20Halo%20Groove%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Dbm" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="122.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10005480" Name="Sauna Rise" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Disco" Kind="AIFF File" Size="15715530" TotalTime="261" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="115.00" DateAdded="2023-03-21" BitRate="320" SampleRate="44100" Comments="Hyvä breikki /* Dark / Groovy */" PlayCount="1" Rating="0" Location="file://localhost/Users/dj/Music/Disco/Kaiku%20-%20Sauna%20Rise.aiff" Remixer="" Tonality="C" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x25FDE9">
+      <TEMPO Inizio="0.025" Bpm="115.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10005617" Name="Yö Sauna" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="24417992" TotalTime="307" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="119.00" DateAdded="2026-02-24" BitRate="320" SampleRate="44100" Comments="" PlayCount="5" Rating="204" Location="file://localhost/Users/dj/Music/Afro_House/Kaiku%20-%20Y%C3%B6%20Sauna.mp3" Remixer="" Tonality="Bm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x0000FF">
+      <TEMPO Inizio="0.025" Bpm="119.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10005754" Name="Aalto Aalto (Extended Mix)" Artist="Kalle &amp; Kide" Composer="" Album="" Grouping="" Genre="Deep House" Kind="MP3 File" Size="14885957" TotalTime="299" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="124.50" DateAdded="2026-08-28" BitRate="320" SampleRate="44100" Comments="/* Peak Time / Vocal */ Energy 6" PlayCount="2" Rating="0" Location="file://localhost/Users/dj/Music/Deep_House/Kalle%20%26%20Kide%20-%20Aalto%20Aalto%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="124.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10005891" Name="Halo Sauna" Artist="Aurora Väinö" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="12946764" TotalTime="324" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="125.00" DateAdded="2025-10-19" BitRate="320" SampleRate="44100" Comments="" PlayCount="0" Rating="0" Location="file://localhost/Users/dj/Music/Tech_House/Aurora%20V%C3%A4in%C3%B6%20-%20Halo%20Sauna.mp3" Remixer="" Tonality="A" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="125.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006028" Name="Neon Sauna" Artist="The Ström Unit" Composer="" Album="" Grouping="" Genre="Techno" Kind="AIFF File" Size="17759523" TotalTime="421" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="130.00" DateAdded="2025-08-15" BitRate="320" SampleRate="44100" Comments="/* Dark / Closing */" PlayCount="2" Rating="0" Location="file://localhost/Users/dj/Music/Techno/The%20Str%C3%B6m%20Unit%20-%20Neon%20Sauna.aiff" Remixer="" Tonality="B" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF0000">
+      <TEMPO Inizio="0.025" Bpm="130.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006165" Name="Valo Deep (Extended Mix)" Artist="DJ Pohjoistuuli" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="23400505" TotalTime="259" DiscNumber="0" TrackNumber="0" Year="2025" AverageBpm="120.50" DateAdded="2026-05-13" BitRate="320" SampleRate="44100" Comments="Hyvä breikki" PlayCount="0" Rating="51" Location="file://localhost/Users/dj/Music/Melodic_Techno/DJ%20Pohjoistuuli%20-%20Valo%20Deep%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Bm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x660099">
+      <TEMPO Inizio="0.025" Bpm="120.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006302" Name="Pulse Aalto" Artist="Kalle &amp; Kide" Composer="" Album="" Grouping="" Genre="Disco" Kind="MP3 File" Size="17380741" TotalTime="467" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="117.50" DateAdded="2025-04-16" BitRate="320" SampleRate="44100" Comments="/* Warm Up / Groovy */" PlayCount="2" Rating="153" Location="file://localhost/Users/dj/Music/Disco/Kalle%20%26%20Kide%20-%20Pulse%20Aalto.mp3" Remixer="" Tonality="Am" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="117.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006439" Name="Deep Sauna" Artist="Aurora Väinö" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="18131795" TotalTime="426" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="126.50" DateAdded="2026-06-13" BitRate="320" SampleRate="44100" Comments="" PlayCount="1" Rating="0" Location="file://localhost/Users/dj/Music/Afro_House/Aurora%20V%C3%A4in%C3%B6%20-%20Deep%20Sauna.mp3" Remixer="" Tonality="Gm" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="126.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006576" Name="Kuu Rise (Extended Mix)" Artist="Lumo" Composer="" Album="" Grouping="" Genre="Deep House" Kind="AIFF File" Size="17725180" TotalTime="304" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="118.00" DateAdded="2023-07-13" BitRate="320" SampleRate="44100" Comments="/* Dark / Peak Time */" PlayCount="30" Rating="204" Location="file://localhost/Users/dj/Music/Deep_House/Lumo%20-%20Kuu%20Rise%20%28Extended%20Mix%29.aiff" Remixer="" Tonality="Bm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="118.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006713" Name="Neon Yö" Artist="Signal/Noise" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="17583923" TotalTime="402" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="126.00" DateAdded="2024-05-14" BitRate="320" SampleRate="44100" Comments="Energy 3" PlayCount="5" Rating="102" Location="file://localhost/Users/dj/Music/Tech_House/Signal/Noise%20-%20Neon%20Y%C3%B6.mp3" Remixer="" Tonality="Ebm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="126.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006850" Name="Yö Sauna" Artist="Signal/Noise" Composer="" Album="" Grouping="" Genre="Techno" Kind="MP3 File" Size="9660140" TotalTime="478" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="135.00" DateAdded="2026-08-20" BitRate="320" SampleRate="44100" Comments="Hyvä breikki /* Dark / Peak Time */" PlayCount="30" Rating="51" Location="file://localhost/Users/dj/Music/Techno/Signal/Noise%20-%20Y%C3%B6%20Sauna.mp3" Remixer="" Tonality="Ab" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="135.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10006987" Name="Yö Groove (Extended Mix)" Artist="The Ström Unit" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="23843868" TotalTime="346" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="122.00" DateAdded="2025-05-09" BitRate="320" SampleRate="44100" Comments="" PlayCount="12" Rating="255" Location="file://localhost/Users/dj/Music/Melodic_Techno/The%20Str%C3%B6m%20Unit%20-%20Y%C3%B6%20Groove%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Ab" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="122.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10007124" Name="Sauna Drift" Artist="Signal/Noise" Composer="" Album="" Grouping="" Genre="Disco" Kind="AIFF File" Size="12017892" TotalTime="282" DiscNumber="0" TrackNumber="0" Year="2024" AverageBpm="117.50" DateAdded="2024-02-07" BitRate="320" SampleRate="44100" Comments="/* Groovy / Closing */" PlayCount="5" Rating="153" Location="file://localhost/Users/dj/Music/Disco/Signal/Noise%20-%20Sauna%20Drift.aiff" Remixer="" Tonality="B" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF0000">
+      <TEMPO Inizio="0.025" Bpm="117.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10007261" Name="Kuu Deep" Artist="The Ström Unit" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="14456110" TotalTime="302" DiscNumber="0" TrackNumber="0" Year="0" AverageBpm="125.00" DateAdded="2024-06-18" BitRate="320" SampleRate="44100" Comments="" PlayCount="0" Rating="102" Location="file://localhost/Users/dj/Music/Afro_House/The%20Str%C3%B6m%20Unit%20-%20Kuu%20Deep.mp3" Remixer="" Tonality="Bbm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFFF00">
+      <TEMPO Inizio="0.025" Bpm="125.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10007398" Name="Halo Drift (Extended Mix)" Artist="DJ Pohjoistuuli" Composer="" Album="" Grouping="" Genre="Deep House" Kind="MP3 File" Size="15046596" TotalTime="336" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="117.50" DateAdded="2025-01-16" BitRate="320" SampleRate="44100" Comments="/* Closing / Dark */" PlayCount="1" Rating="204" Location="file://localhost/Users/dj/Music/Deep_House/DJ%20Pohjoistuuli%20-%20Halo%20Drift%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Dm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFF007F">
+      <TEMPO Inizio="0.025" Bpm="117.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10007535" Name="Groove Sauna" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Tech House" Kind="MP3 File" Size="17093951" TotalTime="469" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="125.00" DateAdded="2026-07-21" BitRate="320" SampleRate="44100" Comments="Hyvä breikki" PlayCount="2" Rating="153" Location="file://localhost/Users/dj/Music/Tech_House/Kaiku%20-%20Groove%20Sauna.mp3" Remixer="" Tonality="Cm" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="125.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10007672" Name="Yö Rise" Artist="Nightshift Collective" Composer="" Album="" Grouping="" Genre="Techno" Kind="AIFF File" Size="23708554" TotalTime="354" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="136.50" DateAdded="2023-04-05" BitRate="320" SampleRate="44100" Comments="/* Peak Time / Dark */ Energy 9" PlayCount="0" Rating="204" Location="file://localhost/Users/dj/Music/Techno/Nightshift%20Collective%20-%20Y%C3%B6%20Rise.aiff" Remixer="" Tonality="Eb" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="136.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10007809" Name="Valo Groove (Extended Mix)" Artist="The Ström Unit" Composer="" Album="" Grouping="" Genre="Melodic Techno" Kind="MP3 File" Size="12216173" TotalTime="299" DiscNumber="0" TrackNumber="0" Year="2023" AverageBpm="120.00" DateAdded="2023-11-23" BitRate="320" SampleRate="44100" Comments="" PlayCount="1" Rating="51" Location="file://localhost/Users/dj/Music/Melodic_Techno/The%20Str%C3%B6m%20Unit%20-%20Valo%20Groove%20%28Extended%20Mix%29.mp3" Remixer="" Tonality="Ab" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0xFFA500">
+      <TEMPO Inizio="0.025" Bpm="120.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10007946" Name="Sauna Rise" Artist="Kaiku" Composer="" Album="" Grouping="" Genre="Disco" Kind="MP3 File" Size="14432443" TotalTime="339" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="114.00" DateAdded="2024-10-01" BitRate="320" SampleRate="44100" Comments="/* Peak Time / Vocal */" PlayCount="0" Rating="204" Location="file://localhost/Users/dj/Music/Disco/Kaiku%20-%20Sauna%20Rise.mp3" Remixer="" Tonality="Cm" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x25FDE9">
+      <TEMPO Inizio="0.025" Bpm="114.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10008083" Name="Kuu Sauna" Artist="DJ Pohjoistuuli" Composer="" Album="" Grouping="" Genre="Afro House" Kind="MP3 File" Size="15877510" TotalTime="380" DiscNumber="0" TrackNumber="0" Year="2018" AverageBpm="122.50" DateAdded="2023-07-23" BitRate="320" SampleRate="44100" Comments="" PlayCount="12" Rating="102" Location="file://localhost/Users/dj/Music/Afro_House/DJ%20Pohjoistuuli%20-%20Kuu%20Sauna.mp3" Remixer="" Tonality="Em" Label="Kuvitteellinen Levy-yhtiö" Mix="">
+      <TEMPO Inizio="0.025" Bpm="122.50" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+    <TRACK TrackID="10008220" Name="Deep Sauna (Extended Mix)" Artist="Mira Saaristo" Composer="" Album="" Grouping="" Genre="Deep House" Kind="AIFF File" Size="22237897" TotalTime="476" DiscNumber="0" TrackNumber="0" Year="2020" AverageBpm="123.00" DateAdded="2024-08-02" BitRate="320" SampleRate="44100" Comments="Hyvä breikki /* Vocal / Warm Up */" PlayCount="12" Rating="102" Location="file://localhost/Users/dj/Music/Deep_House/Mira%20Saaristo%20-%20Deep%20Sauna%20%28Extended%20Mix%29.aiff" Remixer="" Tonality="Bb" Label="Kuvitteellinen Levy-yhtiö" Mix="" Colour="0x00FF00">
+      <TEMPO Inizio="0.025" Bpm="123.00" Metro="4/4" Battito="1"/>
+      <POSITION_MARK Name="" Type="0" Start="0.025" Num="0" Red="40" Green="226" Blue="20"/>
+    </TRACK>
+  </COLLECTION>
+  <PLAYLISTS>
+    <NODE Type="0" Name="ROOT" Count="1">
+      <NODE Name="Vanha lista" Type="1" KeyType="0" Entries="2">
+        <TRACK Key="10000137"/>
+        <TRACK Key="10000274"/>
+      </NODE>
+    </NODE>
+  </PLAYLISTS>
+</DJ_PLAYLISTS>
