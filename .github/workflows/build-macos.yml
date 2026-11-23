@@ -1,0 +1,39 @@
+name: Rakenna macOS-sovellus
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Qt-kirjastot
+        run: sudo apt-get update && sudo apt-get install -y libegl1 libxkbcommon0 libgl1 libfontconfig1 libdbus-1-3
+      - run: pip install -r requirements-dev.txt
+      - run: QT_QPA_PLATFORM=offscreen python -m pytest -q
+
+  macos:
+    needs: test
+    runs-on: macos-latest   # Apple Silicon (M1/M2/M3/M4)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt
+      - run: QT_QPA_PLATFORM=offscreen python -m pytest -q
+      - run: pyinstaller --noconfirm --clean setinrakentaja.spec
+      - name: Pakkaa
+        run: ditto -c -k --sequesterRsrc --keepParent dist/Setinrakentaja.app Setinrakentaja-macOS.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Setinrakentaja-macOS
+          path: Setinrakentaja-macOS.zip
