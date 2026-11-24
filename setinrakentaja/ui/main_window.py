@@ -1,4 +1,4 @@
-"""Pääikkuna: suodattimet vasemmalla, esikatselu ja vientijono oikealla."""
+"""Pääikkuna: vientijono vasemmalla, soittolista (kansi, suodatinpainikkeet, kappaleet) oikealla."""
 
 from __future__ import annotations
 
@@ -7,23 +7,21 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 
-from PySide6.QtCore import QSettings, Qt
-from PySide6.QtGui import QAction, QActionGroup, QKeySequence
+from PySide6.QtCore import QSettings, Qt, QTimer
+from PySide6.QtGui import QAction, QActionGroup, QKeySequence, QShortcut
 from PySide6.QtWidgets import (
     QApplication,
     QFileDialog,
-    QFormLayout,
-    QGroupBox,
+    QFrame,
     QHBoxLayout,
     QLabel,
     QLineEdit,
+    QListWidgetItem,
     QMainWindow,
+    QMenu,
     QMessageBox,
-    QPushButton,
-    QScrollArea,
     QSplitter,
-    QTreeWidget,
-    QTreeWidgetItem,
+    QStackedWidget,
     QVBoxLayout,
     QWidget,
 )
@@ -33,8 +31,10 @@ from ..core.builder import build_tracks
 from ..core.exporter import ExportError, ExportPlaylist, export_xml
 from ..core.library import Library, LibraryError, Track, load_library
 from ..core.recipe import Recipe
-from .filter_panel import FilterPanel
-from .track_model import TrackTableModel, TrackTableView, fmt_duration
+from . import theme
+from .filter_panel import FilterPanel, section_summary
+from .track_model import TrackTableModel, TrackTableView
+from .widgets import CoverLabel, FilterChip, HeroPanel, QueueList, label, pill_button, search_with_icon
 
 APP_NAME = "Setinrakentaja"
 
@@ -53,7 +53,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(APP_NAME)
-        self.resize(1400, 860)
+        self.resize(1440, 900)
+        self.setMinimumSize(1100, 680)
         self.settings = QSettings()  # organisaatio- ja sovellusnimi asetetaan app.py:ssä
         self.library: Library | None = None
         self.current = Recipe()
@@ -62,7 +63,9 @@ class MainWindow(QMainWindow):
 
         self._build_ui()
         self._build_menus()
+        self._refresh_queue_view()
         self._set_enabled(False)
+        self._update_info()
 
         notation = self.settings.value("key_notation", "both")
         self._set_notation(notation)
@@ -73,100 +76,263 @@ class MainWindow(QMainWindow):
 
     # ================================================================ UI
     def _build_ui(self) -> None:
-        splitter = QSplitter(Qt.Horizontal)
+        root = QWidget()
+        root.setObjectName("root")
+        outer = QVBoxLayout(root)
+        outer.setContentsMargins(14, 10, 14, 4)
+        outer.setSpacing(12)
 
-        # --- vasen: suodattimet
-        self.filters = FilterPanel()
+        self.filters = FilterPanel(root)
+        self.filters.hide()
         self.filters.build_requested.connect(self.build_list)
-        scroll = QScrollArea()
-        scroll.setWidget(self.filters)
-        scroll.setWidgetResizable(True)
-        scroll.setMinimumWidth(380)
-        splitter.addWidget(scroll)
 
-        # --- oikea
-        right = QWidget()
-        rv = QVBoxLayout(right)
-        rv.setContentsMargins(6, 6, 6, 6)
-
+        # --- yläpalkki
         top = QHBoxLayout()
+        top.setSpacing(10)
+        logo = QLabel()
+        logo.setPixmap(theme.cover_pixmap("Setinrakentaja", 28, radius=14))
+        top.addWidget(logo)
+        top.addWidget(label(APP_NAME, "logo"))
+        top.addSpacing(14)
+        self.library_btn = pill_button("Avaa kirjasto…", "ghost", "Avaa Rekordboxin XML-vienti (⌘O)")
+        self.library_btn.clicked.connect(lambda: self.open_library())
+        top.addWidget(self.library_btn)
+        top.addStretch(1)
+        self.search = search_with_icon(self.filters.text_search)
+        self.search.setMinimumWidth(420)
+        self.search.setMaximumWidth(620)
+        self.search.textChanged.connect(lambda _: self._search_timer.start())
+        self.search.returnPressed.connect(self.build_list)
+        top.addWidget(self.search, 3)
+        top.addStretch(1)
+        self.recipe_btn = pill_button("Reseptit  ▾", "", "Tallenna ja avaa suodatinyhdistelmiä")
+        top.addWidget(self.recipe_btn)
+        self.more_btn = pill_button("⋯", "icon", "Näkymä ja ohjeet")
+        top.addWidget(self.more_btn)
+        self.export_btn = pill_button("⇪  Vie XML", "", "Vie vientijonon soittolistat uuteen rekordbox.xml-tiedostoon (⌘E)")
+        self.export_btn.clicked.connect(self.export)
+        top.addWidget(self.export_btn)
+        outer.addLayout(top)
+
+        self._search_timer = QTimer(self)
+        self._search_timer.setSingleShot(True)
+        self._search_timer.setInterval(350)
+        self._search_timer.timeout.connect(self._auto_build)
+
+        body = QSplitter(Qt.Horizontal)
+        body.setHandleWidth(10)
+
+        # --- vasen: vientijono kortteina
+        left = QFrame()
+        left.setObjectName("panel")
+        lv = QVBoxLayout(left)
+        lv.setContentsMargins(18, 16, 12, 14)
+        lv.setSpacing(10)
+        lh = QHBoxLayout()
+        lh.addWidget(label("Vientijono", "h1"))
+        lh.addStretch(1)
+        self.new_btn = pill_button("+  Uusi", "", "Aloita uusi soittolista tyhjillä suodattimilla")
+        self.new_btn.clicked.connect(self.new_playlist)
+        lh.addWidget(self.new_btn)
+        lv.addLayout(lh)
+        sub = label("Nämä soittolistat tallennetaan samaan XML-tiedostoon.", "faint")
+        sub.setWordWrap(True)
+        lv.addWidget(sub)
+        self.queue_list = QueueList()
+        self.queue_list.itemDoubleClicked.connect(self._queue_item_activated)
+        self.queue_list.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.queue_list.customContextMenuRequested.connect(self._queue_menu)
+        QShortcut(QKeySequence.Delete, self.queue_list, activated=self.remove_from_queue)
+        QShortcut(QKeySequence(Qt.Key_Backspace), self.queue_list, activated=self.remove_from_queue)
+        lv.addWidget(self.queue_list, 1)
+        self.queue_empty = label(
+            "Jono on tyhjä.\n\nKoosta lista oikealla ja paina »+ Lisää jonoon«.", "faint"
+        )
+        self.queue_empty.setWordWrap(True)
+        self.queue_empty.setAlignment(Qt.AlignCenter)
+        lv.addWidget(self.queue_empty, 1)
+        qb = QHBoxLayout()
+        self.queue_edit_btn = pill_button("Avaa", "ghost", "Avaa valittu lista muokattavaksi")
+        self.queue_edit_btn.clicked.connect(lambda: self._queue_item_activated(self.queue_list.currentItem()))
+        self.queue_remove_btn = pill_button("Poista", "ghost", "Poista valittu lista jonosta")
+        self.queue_remove_btn.clicked.connect(self.remove_from_queue)
+        qb.addWidget(self.queue_edit_btn)
+        qb.addWidget(self.queue_remove_btn)
+        qb.addStretch(1)
+        lv.addLayout(qb)
+        left.setMinimumWidth(240)
+        body.addWidget(left)
+
+        # --- oikea: hero + suodatinpainikkeet + taulukko
+        right = HeroPanel()
+        rv = QVBoxLayout(right)
+        rv.setContentsMargins(26, 26, 22, 8)
+        rv.setSpacing(14)
+
+        hero = QHBoxLayout()
+        hero.setSpacing(26)
+        self.cover = CoverLabel(176)
+        hero.addWidget(self.cover, 0, Qt.AlignTop)
+        hv = QVBoxLayout()
+        hv.setSpacing(4)
+        hv.addSpacing(6)
+        hv.addWidget(label("Soittolista", "eyebrow"))
         self.name_edit = QLineEdit(self.current.name)
-        self.name_edit.setPlaceholderText("Soittolistan nimi")
+        self.name_edit.setObjectName("title")
+        self.name_edit.setPlaceholderText("Nimetön soittolista")
+        self.name_edit.setToolTip("Soittolistan nimi – napsauta muokataksesi")
+        self.name_edit.textChanged.connect(self._update_cover)
+        hv.addWidget(self.name_edit)
         self.folder_edit = QLineEdit()
-        self.folder_edit.setPlaceholderText("Kansio, esim. Keikat/2026 Joulu (valinnainen)")
-        top.addWidget(QLabel("Nimi:"))
-        top.addWidget(self.name_edit, 2)
-        top.addWidget(QLabel("Kansio:"))
-        top.addWidget(self.folder_edit, 2)
-        rv.addLayout(top)
+        self.folder_edit.setObjectName("folder")
+        self.folder_edit.setPlaceholderText("📁  Lisää kansio, esim. Keikat/2026 Joulu")
+        self.folder_edit.setToolTip("Kansio Rekordboxissa. Alikansiot erotetaan kauttaviivalla.")
+        hv.addWidget(self.folder_edit)
+        hv.addSpacing(4)
+        self.info = label("", "muted")
+        hv.addWidget(self.info)
+        hv.addStretch(1)
+        actions = QHBoxLayout()
+        actions.setSpacing(10)
+        self.build_btn = pill_button("▶  Luo lista", "primary", "Hae ja järjestä kappaleet suodattimien mukaan (Enter)")
+        self.build_btn.clicked.connect(self.build_list)
+        actions.addWidget(self.build_btn)
+        self.add_queue_btn = pill_button("+  Lisää jonoon", "", "Lisää tämä lista vientijonoon (samanniminen korvataan)")
+        self.add_queue_btn.clicked.connect(self.add_to_queue)
+        actions.addWidget(self.add_queue_btn)
+        actions.addStretch(1)
+        self.up_btn = pill_button("↑", "icon", "Siirrä valitut ylös (⌘↑). Rivejä voi myös raahata.")
+        self.up_btn.clicked.connect(lambda: self.table.move_selected(-1))
+        self.down_btn = pill_button("↓", "icon", "Siirrä valitut alas (⌘↓)")
+        self.down_btn.clicked.connect(lambda: self.table.move_selected(1))
+        self.remove_btn = pill_button("✕", "icon", "Poista valitut listalta (Delete). Poisto tallentuu reseptiin.")
+        self.remove_btn.clicked.connect(self.remove_selected)
+        self.restore_btn = pill_button("↺", "icon", "Palauta käsin poistetut kappaleet")
+        self.restore_btn.clicked.connect(self.restore_removed)
+        for b in (self.up_btn, self.down_btn, self.remove_btn, self.restore_btn):
+            actions.addWidget(b)
+        hv.addLayout(actions)
+        hero.addLayout(hv, 1)
+        rv.addLayout(hero)
+        rv.addSpacing(4)
 
-        self.info = QLabel("Avaa ensin Rekordboxin XML-vienti (Tiedosto > Avaa kirjasto).")
-        self.info.setStyleSheet("padding: 2px;")
-        rv.addWidget(self.info)
+        chips = QHBoxLayout()
+        chips.setSpacing(8)
+        self.chips: dict[str, FilterChip] = {}
+        order = [
+            ("genre", "Genre"), ("key", "Sävellaji"), ("bpm", "BPM"), ("rating", "Arvio"),
+            ("tags", "Tagit"), ("more", "Lisää"),
+        ]
+        for key, text in order:
+            title, widget = self.filters.sections[key]
+            chip = FilterChip(key, text, title, widget)
+            chip.closed.connect(self._chip_closed)
+            self.chips[key] = chip
+            chips.addWidget(chip)
+        self.clear_btn = pill_button("Tyhjennä", "ghost", "Tyhjennä suodattimet (järjestys ja pituus säilyvät)")
+        self.clear_btn.clicked.connect(self.clear_filters)
+        chips.addWidget(self.clear_btn)
+        chips.addStretch(1)
+        for key, text in (("limit", "Pituus"), ("sort", "Järjestys")):
+            title, widget = self.filters.sections[key]
+            chip = FilterChip(key, text, title, widget)
+            chip.closed.connect(self._chip_closed)
+            self.chips[key] = chip
+            chips.addWidget(chip)
+        rv.addLayout(chips)
 
-        vsplit = QSplitter(Qt.Vertical)
         self.model = TrackTableModel()
         self.model.changed.connect(self._update_info)
         self.table = TrackTableView()
         self.table.setModel(self.model)
         self.table.remove_requested.connect(self.remove_selected)
-        tablebox = QWidget()
-        tv = QVBoxLayout(tablebox)
-        tv.setContentsMargins(0, 0, 0, 0)
-        tv.addWidget(self.table)
 
-        btns = QHBoxLayout()
-        self.up_btn = QPushButton("▲ Ylös")
-        self.up_btn.setToolTip("Siirrä valitut ylös (Ctrl+↑). Rivejä voi myös raahata hiirellä.")
-        self.up_btn.clicked.connect(lambda: self.table.move_selected(-1))
-        self.down_btn = QPushButton("▼ Alas")
-        self.down_btn.setToolTip("Siirrä valitut alas (Ctrl+↓)")
-        self.down_btn.clicked.connect(lambda: self.table.move_selected(1))
-        self.remove_btn = QPushButton("Poista valitut")
-        self.remove_btn.setToolTip("Poistaa kappaleet listalta ja pitää ne poissa myös reseptissä (Delete)")
-        self.remove_btn.clicked.connect(self.remove_selected)
-        self.restore_btn = QPushButton("Palauta poistetut")
-        self.restore_btn.setToolTip("Tyhjentää käsin poistettujen listan ja luo listan uudelleen")
-        self.restore_btn.clicked.connect(self.restore_removed)
-        self.add_queue_btn = QPushButton("Lisää vientijonoon ▼")
-        self.add_queue_btn.setStyleSheet("font-weight: bold;")
-        self.add_queue_btn.clicked.connect(self.add_to_queue)
-        for b in (self.up_btn, self.down_btn, self.remove_btn, self.restore_btn):
-            btns.addWidget(b)
-        btns.addStretch(1)
-        btns.addWidget(self.add_queue_btn)
-        tv.addLayout(btns)
-        vsplit.addWidget(tablebox)
+        self.stack = QStackedWidget()
+        welcome = QWidget()
+        wv = QVBoxLayout(welcome)
+        wv.addStretch(1)
+        wt = label("Aloita avaamalla Rekordbox-kirjastosi", "h1")
+        wt.setAlignment(Qt.AlignCenter)
+        wv.addWidget(wt)
+        ws = label(
+            "Vie kirjasto Rekordboxissa: File > Export Collection in xml format.\n"
+            "Sovellus vain lukee tiedostoa – Rekordboxin tietokantaan ei kosketa.",
+            "muted",
+        )
+        ws.setAlignment(Qt.AlignCenter)
+        wv.addWidget(ws)
+        wb = pill_button("Avaa rekordbox.xml…", "primary")
+        wb.clicked.connect(lambda: self.open_library())
+        wbl = QHBoxLayout()
+        wbl.addStretch(1)
+        wbl.addWidget(wb)
+        wbl.addStretch(1)
+        wv.addSpacing(10)
+        wv.addLayout(wbl)
+        wv.addStretch(2)
+        self.stack.addWidget(welcome)
+        self.stack.addWidget(self.table)
+        self.empty_label = label("", "muted")
+        self.empty_label.setAlignment(Qt.AlignCenter)
+        self.empty_label.setWordWrap(True)
+        self.stack.addWidget(self.empty_label)
+        rv.addWidget(self.stack, 1)
 
-        # --- vientijono
-        qbox = QGroupBox("Vientijono (nämä soittolistat tallennetaan samaan XML-tiedostoon)")
-        qv = QVBoxLayout(qbox)
-        self.queue_tree = QTreeWidget()
-        self.queue_tree.setHeaderLabels(["Soittolista / kansio", "Kappaleita", "Kesto"])
-        self.queue_tree.setColumnWidth(0, 360)
-        self.queue_tree.itemDoubleClicked.connect(self._queue_item_activated)
-        qv.addWidget(self.queue_tree)
-        qb = QHBoxLayout()
-        self.queue_edit_btn = QPushButton("Avaa muokattavaksi")
-        self.queue_edit_btn.clicked.connect(lambda: self._queue_item_activated(self.queue_tree.currentItem()))
-        self.queue_remove_btn = QPushButton("Poista jonosta")
-        self.queue_remove_btn.clicked.connect(self.remove_from_queue)
-        self.export_btn = QPushButton("Vie XML-tiedostoksi…")
-        self.export_btn.setStyleSheet("font-weight: bold;")
-        self.export_btn.clicked.connect(self.export)
-        qb.addWidget(self.queue_edit_btn)
-        qb.addWidget(self.queue_remove_btn)
-        qb.addStretch(1)
-        qb.addWidget(self.export_btn)
-        qv.addLayout(qb)
-        vsplit.addWidget(qbox)
-        vsplit.setSizes([560, 220])
-        rv.addWidget(vsplit, 1)
+        body.addWidget(right)
+        body.setStretchFactor(0, 0)
+        body.setStretchFactor(1, 1)
+        body.setSizes([300, 1100])
+        outer.addWidget(body, 1)
 
-        splitter.addWidget(right)
-        splitter.setSizes([420, 980])
-        self.setCentralWidget(splitter)
+        self.setCentralWidget(root)
         self.statusBar().showMessage("Valmis")
+        self._last_built: dict | None = None
+        self._update_cover()
+        self.queue_list.itemSelectionChanged.connect(self._update_queue_buttons)
+
+    def _update_cover(self) -> None:
+        seed = self.name_edit.text().strip() or "Nimetön"
+        self.cover.set_seed(seed)
+        self.centralWidget().findChild(HeroPanel).set_color(theme.cover_color(seed))
+
+    def _filters_signature(self) -> dict:
+        d = self.filters.get_recipe(self.current).to_dict()
+        for k in ("name", "folder", "version"):
+            d.pop(k, None)
+        return d
+
+    def _update_chips(self) -> None:
+        r = self.filters.get_recipe()
+        for key, chip in self.chips.items():
+            chip.set_summary(section_summary(key, r))
+
+    def _chip_closed(self, key: str) -> None:
+        self._update_chips()
+        self._auto_build()
+
+    def _auto_build(self) -> None:
+        """Luo listan uudelleen vain, jos suodattimet ovat muuttuneet edellisestä."""
+        if self.library is None:
+            return
+        if self._filters_signature() != self._last_built:
+            self.build_list()
+
+    def clear_filters(self) -> None:
+        self.filters.reset()
+        self._update_chips()
+        self._auto_build()
+
+    def new_playlist(self) -> None:
+        self.current = Recipe()
+        self.filters.set_recipe(Recipe())
+        self.name_edit.setText("Uusi soittolista")
+        self.folder_edit.clear()
+        self.queue_list.clearSelection()
+        self._update_chips()
+        self.model.set_tracks([])
+        self._last_built = None
+        self.name_edit.setFocus()
+        self.name_edit.selectAll()
 
     def _build_menus(self) -> None:
         mb = self.menuBar()
@@ -200,13 +366,14 @@ class MainWindow(QMainWindow):
         r.addSeparator()
         r.addAction(self.act_batch)
         r.addAction(self.act_save_queue)
+        self.recipe_btn.setMenu(r)
 
         v = mb.addMenu("&Näytä")
         km = v.addMenu("Sävellajimerkintä")
         self.notation_group = QActionGroup(self)
         self.notation_actions = {}
-        for key, label in (("both", "Molemmat (8A (Am))"), ("camelot", "Camelot (8A)"), ("classical", "Perinteinen (Am)")):
-            a = QAction(label, self, checkable=True)
+        for key, text in (("both", "Molemmat (8A (Am))"), ("camelot", "Camelot (8A)"), ("classical", "Perinteinen (Am)")):
+            a = QAction(text, self, checkable=True)
             a.triggered.connect(lambda _=False, k=key: self._set_notation(k))
             self.notation_group.addAction(a)
             km.addAction(a)
@@ -228,19 +395,31 @@ class MainWindow(QMainWindow):
         )
         h.addAction(a)
 
+        more = QMenu(self)
+        more.addMenu(km)
+        more.addSeparator()
+        for act in h.actions():
+            more.addAction(act)
+        self.more_btn.setMenu(more)
+        self.more_btn.setStyleSheet("QPushButton::menu-indicator { width: 0; }")
+
     def _set_enabled(self, on: bool) -> None:
         for w in (
-            self.filters, self.table, self.up_btn, self.down_btn, self.remove_btn,
-            self.restore_btn, self.add_queue_btn, self.act_reload, self.act_batch,
-            self.act_load_recipe,
+            self.table, self.up_btn, self.down_btn, self.remove_btn, self.restore_btn,
+            self.add_queue_btn, self.build_btn, self.search, self.clear_btn, self.act_reload,
+            self.act_batch, self.act_load_recipe, self.act_save_recipe, *self.chips.values(),
         ):
             w.setEnabled(on)
+        self.stack.setCurrentIndex(1 if on else 0)
         self._update_queue_buttons()
 
     def _update_queue_buttons(self) -> None:
         has = bool(self.queue) and self.library is not None
-        for w in (self.export_btn, self.act_export, self.queue_remove_btn, self.queue_edit_btn, self.act_save_queue):
+        for w in (self.export_btn, self.act_export, self.act_save_queue):
             w.setEnabled(has)
+        sel = self.queue_list.currentItem() is not None
+        for w in (self.queue_remove_btn, self.queue_edit_btn):
+            w.setEnabled(has and sel)
 
     def _set_notation(self, key: str) -> None:
         if key not in self.notation_actions:
@@ -279,12 +458,14 @@ class MainWindow(QMainWindow):
         self.filters.set_library(lib)
         self._set_enabled(True)
         ver = f"{lib.product_name} {lib.product_version}".strip()
-        self.statusBar().showMessage(f"Kirjasto: {lib.path}  ·  {len(lib.tracks)} kappaletta  ·  {ver}")
+        self.statusBar().showMessage(f"Kirjasto: {lib.path}  ·  {ver}")
+        self.library_btn.setText(f"📚  {lib.path.name}  ·  {len(lib.tracks)} kpl")
         if old is not None:
             # kirjasto vaihtui: päivitetään jono resepteistä, jotta kappaleviittaukset ovat ajantasaiset
             self.rebuild_queue()
+        self._update_chips()
         self.model.set_tracks([])
-        self.info.setText(f"{len(lib.tracks)} kappaletta kirjastossa. Valitse suodattimet ja paina »Luo lista«.")
+        self._last_built = None
 
     def reload_library(self) -> None:
         if self.library:
@@ -306,22 +487,37 @@ class MainWindow(QMainWindow):
             tracks = build_tracks(self.library, recipe)
         finally:
             QApplication.restoreOverrideCursor()
+        self._last_built = self._filters_signature()
+        self._update_chips()
         self.model.set_tracks(tracks)
-        if not tracks:
-            self.statusBar().showMessage("Yksikään kappale ei täyttänyt ehtoja.", 5000)
 
     def _update_info(self) -> None:
         tr = self.model.tracks
-        if not tr:
-            if self.library:
-                self.info.setText("Ei kappaleita. Muuta suodattimia ja paina »Luo lista«.")
+        if self.library is None:
+            self.info.setText("Ei kirjastoa avattuna")
             return
+        if not tr:
+            if self._last_built is None:
+                self.info.setText(f"{len(self.library.tracks)} kappaletta kirjastossa")
+                self.empty_label.setText(
+                    "Valitse suodattimet yllä olevista painikkeista tai hae artistia,\n"
+                    "ja paina »▶ Luo lista«."
+                )
+            else:
+                self.info.setText("Ei kappaleita")
+                self.empty_label.setText("Yksikään kappale ei täyttänyt ehtoja.\nKokeile väljentää suodattimia.")
+            self.stack.setCurrentIndex(2)
+            return
+        self.stack.setCurrentIndex(1)
         total = sum(t.duration for t in tr)
         bpms = [t.bpm for t in tr if t.bpm]
-        bpm_txt = f"BPM {min(bpms):.1f}–{max(bpms):.1f}" if bpms else ""
+        parts = [f"<b style='color:{theme.TEXT}'>{len(tr)} kappaletta</b>, {_fmt_long(total)}"]
+        if bpms:
+            parts.append(f"BPM {min(bpms):g}–{max(bpms):g}")
         removed = len(self.current.manual_exclude)
-        extra = f"  ·  käsin poistettu {removed}" if removed else ""
-        self.info.setText(f"<b>{len(tr)}</b> kappaletta  ·  {fmt_duration(total)}  ·  {bpm_txt}{extra}")
+        if removed:
+            parts.append(f"{removed} poistettu käsin")
+        self.info.setText("  ·  ".join(parts))
 
     def remove_selected(self) -> None:
         rows = self.table.selected_rows()
@@ -356,31 +552,28 @@ class MainWindow(QMainWindow):
 
     def _refresh_queue(self) -> None:
         self._unsaved = bool(self.queue)
-        self.queue_tree.clear()
-        folders: dict[tuple, QTreeWidgetItem] = {}
+        self._refresh_queue_view()
+
+    def _refresh_queue_view(self) -> None:
+        self.queue_list.clear()
         for i, e in enumerate(self.queue):
-            parent = self.queue_tree.invisibleRootItem()
-            parts = [p for p in e.recipe.folder.split("/") if p.strip()]
-            path: tuple = ()
-            for p in parts:
-                path = path + (p.strip(),)
-                if path not in folders:
-                    it = QTreeWidgetItem(parent, [f"📁 {p.strip()}"])
-                    it.setExpanded(True)
-                    folders[path] = it
-                parent = folders[path]
-            item = QTreeWidgetItem(
-                parent,
-                [f"♫ {e.recipe.name}", str(len(e.tracks)), fmt_duration(sum(t.duration for t in e.tracks))],
-            )
-            item.setData(0, Qt.UserRole, i)
-        self.queue_tree.expandAll()
+            folder = e.recipe.folder.strip("/ ") or "Juuritaso"
+            dur = _fmt_long(sum(t.duration for t in e.tracks))
+            self.queue_list.add_card(e.recipe.name, f"📁 {folder}\n{len(e.tracks)} kpl · {dur}", e.recipe.name, i)
+        has = bool(self.queue)
+        self.queue_list.setVisible(has)
+        self.queue_empty.setVisible(not has)
+        n = len(self.queue)
+        self.export_btn.setText(f"⇪  Vie XML ({n})" if n else "⇪  Vie XML")
+        self.export_btn.setObjectName("primary" if n else "")
+        self.export_btn.style().unpolish(self.export_btn)
+        self.export_btn.style().polish(self.export_btn)
         self._update_queue_buttons()
 
-    def _queue_item_activated(self, item: QTreeWidgetItem | None) -> None:
+    def _queue_item_activated(self, item: QListWidgetItem | None) -> None:
         if item is None:
             return
-        idx = item.data(0, Qt.UserRole)
+        idx = item.data(Qt.UserRole)
         if idx is None:
             return
         e = self.queue[idx]
@@ -388,28 +581,29 @@ class MainWindow(QMainWindow):
         self.name_edit.setText(e.recipe.name)
         self.folder_edit.setText(e.recipe.folder)
         self.filters.set_recipe(e.recipe)
+        self._update_chips()
         self.model.set_tracks(e.tracks)
+        self._last_built = self._filters_signature()
         self.statusBar().showMessage(
-            f"Avattiin muokattavaksi: {e.recipe.name}. Lisää jonoon uudelleen tallentaaksesi muutokset.", 6000
+            f"Avattiin muokattavaksi: {e.recipe.name}. Paina »+ Lisää jonoon« tallentaaksesi muutokset.", 6000
         )
 
-    def remove_from_queue(self) -> None:
-        item = self.queue_tree.currentItem()
+    def _queue_menu(self, pos) -> None:
+        item = self.queue_list.itemAt(pos)
         if item is None:
             return
-        idx = item.data(0, Qt.UserRole)
-        if idx is None:
-            # kansio: poistetaan kaikki sen alla olevat
-            ids = []
-            stack = [item]
-            while stack:
-                it = stack.pop()
-                if it.data(0, Qt.UserRole) is not None:
-                    ids.append(it.data(0, Qt.UserRole))
-                stack.extend(it.child(i) for i in range(it.childCount()))
-        else:
-            ids = [idx]
-        self.queue = [e for i, e in enumerate(self.queue) if i not in set(ids)]
+        self.queue_list.setCurrentItem(item)
+        menu = QMenu(self)
+        menu.addAction("Avaa muokattavaksi", lambda: self._queue_item_activated(item))
+        menu.addAction("Poista jonosta", self.remove_from_queue)
+        menu.exec(self.queue_list.mapToGlobal(pos))
+
+    def remove_from_queue(self) -> None:
+        item = self.queue_list.currentItem()
+        if item is None:
+            return
+        idx = item.data(Qt.UserRole)
+        self.queue = [e for i, e in enumerate(self.queue) if i != idx]
         self._refresh_queue()
 
     def rebuild_queue(self) -> None:
@@ -454,6 +648,7 @@ class MainWindow(QMainWindow):
         self.name_edit.setText(r.name)
         self.folder_edit.setText(r.folder)
         self.filters.set_recipe(r)
+        self._update_chips()
         self.build_list()
 
     def batch_from_recipes(self) -> None:
@@ -565,3 +760,9 @@ class MainWindow(QMainWindow):
 def _safe_name(s: str) -> str:
     keep = "".join(c if c.isalnum() or c in " -_." else "_" for c in s).strip()
     return keep or "resepti"
+
+
+def _fmt_long(sec: int) -> str:
+    h, rem = divmod(int(sec), 3600)
+    m = rem // 60
+    return f"{h} h {m} min" if h else f"{m} min"

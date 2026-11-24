@@ -23,6 +23,9 @@ def app():
     app = QApplication.instance() or QApplication([])
     app.setOrganizationName("SetinrakentajaTesti")
     app.setApplicationName("SetinrakentajaTesti")
+    from setinrakentaja.ui.theme import apply_theme
+
+    apply_theme(app)
     return app
 
 
@@ -136,3 +139,49 @@ def test_move_rows_edges(win):
     m.set_tracks([t for i in ids for t in win.library.tracks if t.track_id == i])
     m.move_rows([3], 3)  # paikallaan
     assert [t.track_id for t in m.tracks] == ids
+
+
+def test_chips_and_popover(win):
+    from setinrakentaja.ui.filter_panel import section_summary
+
+    chip = win.chips["bpm"]
+    assert chip.property("active") == "false"
+    chip.open()
+    QApplication.processEvents()
+    assert win.filters.bpm_min.isVisible()
+    win.filters.bpm_min.setValue(122)
+    win.filters.bpm_max.setValue(128)
+    chip.close_popover()
+    QApplication.processEvents()
+    # sulkeminen päivittää painikkeen ja luo listan automaattisesti
+    assert chip.property("active") == "true" and "122" in chip.text()
+    assert win.model.tracks and all(122 <= t.bpm <= 128 for t in win.model.tracks)
+    # osion voi avata uudelleen
+    chip.open()
+    QApplication.processEvents()
+    assert win.filters.bpm_min.isVisible()
+    chip.close_popover()
+
+    r = Recipe(keys=["8A", "9A"], keys_compatible=True, genres_include=["Disco", "Techno"],
+               genres_exclude=["Afro House"], target_minutes=60, sort_mode="harmonic")
+    assert section_summary("key", r) == "8A, 9A ≈"
+    assert section_summary("genre", r) == "Disco +1 · ei Afro House"
+    assert section_summary("limit", r) == "60 min"
+    assert section_summary("sort", r) == "Harmoninen setti"
+    assert section_summary("more", Recipe()) is None
+
+
+def test_queue_cards(win):
+    win.build_list()
+    win.name_edit.setText("A")
+    win.add_to_queue()
+    win.name_edit.setText("B")
+    win.folder_edit.setText("Keikat")
+    win.add_to_queue()
+    assert win.queue_list.count() == 2
+    assert "Vie XML (2)" in win.export_btn.text()
+    win.queue_list.setCurrentRow(0)
+    win.remove_from_queue()
+    assert [e.recipe.name for e in win.queue] == ["B"]
+    win._queue_item_activated(win.queue_list.item(0))
+    assert win.name_edit.text() == "B" and win.folder_edit.text() == "Keikat"

@@ -105,8 +105,23 @@ Energiakaari käyttää kappaleen energiaa asteikolla 1–10:
 
 ## 3. Soittolistan kokoaminen
 
-Sovelluksen vasemmassa reunassa ovat suodattimet ja oikeassa reunassa kappalelistan
-esikatselu.
+Sovelluksen ikkunassa on kolme aluetta:
+
+- **Vasemmalla** on vientijono. Siinä ovat valmiit soittolistat kortteina.
+- **Oikealla** on käsiteltävä soittolista. Ylhäällä näkyvät kansi, nimi ja kansio, niiden
+  alla suodatinpainikkeet ja kappalelista.
+- **Yläpalkissa** ovat hakukenttä, Reseptit-valikko ja **Vie XML**.
+
+Suodattimet ovat pyöristettyjä painikkeita: **Genre**, **Sävellaji**, **BPM**, **Arvio**,
+**Tagit** ja **Lisää**, sekä oikeassa reunassa **Pituus** ja **Järjestys**.
+
+- Painike avaa suodattimen asetukset pieneen ikkunaan.
+- Kun ikkuna suljetaan, lista luodaan automaattisesti uudelleen.
+- Käytössä oleva suodatin näkyy vaaleana painikkeena, ja painikkeessa lukee sen arvo,
+  esim. `BPM 122–128`.
+- **Tyhjennä** poistaa suodattimet, mutta järjestys ja pituus säilyvät.
+- Yläpalkin hakukenttä etsii artistista, nimestä, albumista, remixeristä ja
+  levy-yhtiöstä kirjoittaessasi.
 
 | Suodatin | Selitys |
 |---|---|
@@ -117,7 +132,7 @@ esikatselu.
 | My Tag ja kommentti | Tagit (*jokin* tai *kaikki* valituista), sekä sanat, joita kommentissa on tai ei ole. |
 | Vuosi, lisäyspäivä | Julkaisuvuosiväli, lisäyspäivän väli tai *viimeiset N päivää*. |
 | Pituus, toistot | Kappaleen pituus minuutteina. Toistokerrat, esim. enintään 2 = vähän soitetut. |
-| Tekstihaku | Hakee artistista, nimestä, albumista, remixeristä ja levy-yhtiöstä. *Ei sisällä* -kentän mikä tahansa sana sulkee kappaleen pois. |
+| Tekstihaku | Yläpalkin haku. *Lisää*-painikkeen *Ei sisällä sanoja* -kentän mikä tahansa sana sulkee kappaleen pois. |
 
 **Viiva (—) kentässä tarkoittaa, ettei rajausta ole.**
 
@@ -135,7 +150,7 @@ esikatselu.
   Harmonisessa setissä ja energiakaaressa kappaleet valitaan koko suodatetusta
   joukosta niin, että kaari toteutuu.
 
-Paina **Luo lista ▶**.
+Paina **▶ Luo lista** tai sulje suodatinikkuna.
 
 Esikatselun *Siirtymä*-sarake näyttää, miten kappale sopii edelliseen:
 
@@ -147,22 +162,23 @@ Sarakkeessa näkyy myös BPM-muutos.
 
 ### Käsin muokkaus
 
-- **Siirrä**: raahaa rivejä hiirellä tai käytä ▲/▼-nappeja (⌘↑ / ⌘↓).
-- **Poista**: valitse rivit ja paina **Poista valitut** (tai Delete / ⌫).
+- **Siirrä**: raahaa rivejä hiirellä tai käytä ↑/↓-nappeja (⌘↑ / ⌘↓).
+- **Poista**: valitse rivit ja paina ✕ (tai Delete / ⌫).
   Poistetut kappaleet tallentuvat myös reseptiin, joten ne pysyvät poissa, kun listan
-  luo uudelleen. **Palauta poistetut** tyhjentää poistolistan.
+  luo uudelleen. ↺ palauttaa poistetut.
 - **Järjestä sarakkeen mukaan**: klikkaa sarakeotsikkoa. Toinen klikkaus kääntää
   suunnan.
 
 ### Vientijono ja kansiot
 
-1. Anna listalle **nimi** ja halutessasi **kansio**. Kansiot erotetaan
-   kauttaviivalla, esim. `Keikat/2026 Joulu`.
-2. Paina **Lisää vientijonoon**. Samanniminen lista samassa kansiossa korvataan.
-3. Toista muille listoille.
-4. Avaa jonossa oleva lista muokattavaksi tuplaklikkaamalla sitä.
-5. Kun jono on valmis, valitse **Vie XML-tiedostoksi…** (⌘E). Kaikki listat
-   tallentuvat yhteen uuteen tiedostoon kansiorakenteineen.
+1. Napsauta listan **nimeä** ylhäällä ja kirjoita uusi. Lisää halutessasi **kansio**.
+   Kansiot erotetaan kauttaviivalla, esim. `Keikat/2026 Joulu`.
+2. Paina **+ Lisää jonoon**. Samanniminen lista samassa kansiossa korvataan.
+3. Aloita seuraava lista painamalla **+ Uusi** ja toista.
+4. Avaa jonossa oleva lista muokattavaksi kaksoisnapsauttamalla korttia. Hiiren
+   oikealla saat valikon, jossa ovat *Avaa* ja *Poista*.
+5. Kun jono on valmis, paina yläpalkin **Vie XML** (⌘E). Kaikki listat tallentuvat
+   yhteen uuteen tiedostoon kansiorakenteineen.
 
 ### Reseptit
 

@@ -29,6 +29,7 @@ from PySide6.QtWidgets import (
 from ..core.keys import camelot_to_classical, to_camelot
 from ..core.library import COLOUR_NAMES, Library
 from ..core.recipe import SORT_MODES, Recipe
+from .theme import camelot_color
 
 
 # ---------------------------------------------------------------- apuwidgetit
@@ -181,8 +182,14 @@ class FilterPanel(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        root = QVBoxLayout(self)
-        root.setSpacing(8)
+        # Osiot näytetään pääikkunassa suodatinpainikkeiden ponnahdusikkunoissa.
+        self.sections: dict[str, tuple[str, QWidget]] = {}
+
+        def section(key: str, title: str, widget: QWidget) -> None:
+            widget.setTitle("")
+            widget.setParent(self)
+            widget.hide()
+            self.sections[key] = (title, widget)
 
         # --- BPM
         g = QGroupBox("BPM")
@@ -196,7 +203,7 @@ class FilterPanel(QWidget):
         f.addRow("Väli", row)
         self.bpm_half_double = QCheckBox("Hyväksy myös puolikas / tupla-tempo")
         f.addRow(self.bpm_half_double)
-        root.addWidget(g)
+        section("bpm", "BPM", g)
 
         # --- Sävellaji
         g = QGroupBox("Sävellaji")
@@ -211,7 +218,12 @@ class FilterPanel(QWidget):
                 b.setText(f"{code}\n{camelot_to_classical(code)}")
                 b.setCheckable(True)
                 b.setToolTip(f"{code} = {camelot_to_classical(code)} ({'molli' if letter == 'A' else 'duuri'})")
-                b.setMinimumWidth(40)
+                b.setMinimumSize(46, 40)
+                col = camelot_color(code)
+                b.setStyleSheet(
+                    f"QToolButton {{ color: {col.name()}; }}"
+                    f"QToolButton:checked {{ background: {col.name()}; color: #0b0b0c; font-weight: 700; }}"
+                )
                 self.key_buttons[code] = b
                 r = li * 2 + (0 if n <= 6 else 1)
                 grid.addWidget(b, r, (n - 1) % 6)
@@ -223,14 +235,14 @@ class FilterPanel(QWidget):
         v.addWidget(self.keys_compatible)
         v.addWidget(self.keys_extended)
         v.addWidget(clear_keys)
-        root.addWidget(g)
+        section("key", "Sävellaji", g)
 
         # --- Genre
         g = QGroupBox("Genre")
         v = QVBoxLayout(g)
         self.genres = IncludeExclude("Suodata genrejä…", 130)
         v.addWidget(self.genres)
-        root.addWidget(g)
+        section("genre", "Genre", g)
 
         # --- Arvio, väri
         g = QGroupBox("Arvio ja väri")
@@ -250,7 +262,7 @@ class FilterPanel(QWidget):
         self.colours = IncludeExclude("Suodata värejä…", 100)
         self.colours.set_items(COLOUR_NAMES)
         f.addRow(self.colours)
-        root.addWidget(g)
+        section("rating", "Arvio ja väri", g)
 
         # --- My Tag & kommentti
         g = QGroupBox("My Tag ja kommentti")
@@ -267,7 +279,7 @@ class FilterPanel(QWidget):
         self.comment_excludes.setPlaceholderText("esim. edit")
         f.addRow("Kommentissa", self.comment_contains)
         f.addRow("Ei kommentissa", self.comment_excludes)
-        root.addWidget(g)
+        section("tags", "My Tag ja kommentti", g)
 
         # --- Aika
         g = QGroupBox("Vuosi, lisäyspäivä, pituus, toistot")
@@ -299,18 +311,17 @@ class FilterPanel(QWidget):
         row.addWidget(QLabel("–"))
         row.addWidget(self.play_max)
         f.addRow("Toistokerrat", row)
-        root.addWidget(g)
+        time_group, time_form = g, f
 
-        # --- Teksti
-        g = QGroupBox("Tekstihaku (artisti, nimi, albumi, remixer, levy-yhtiö)")
-        f = QFormLayout(g)
+        # --- Teksti: hakukenttä on pääikkunan yläpalkissa, poissulkeva haku "Lisää"-osiossa
         self.text_search = QLineEdit()
-        self.text_search.setPlaceholderText("kaikkien sanojen oltava mukana")
+        self.text_search.setObjectName("search")
+        self.text_search.setPlaceholderText("Hae artistia, nimeä, albumia tai levy-yhtiötä…")
+        self.text_search.setClearButtonEnabled(True)
         self.text_exclude = QLineEdit()
         self.text_exclude.setPlaceholderText("mikä tahansa sana sulkee pois")
-        f.addRow("Hae", self.text_search)
-        f.addRow("Ei sisällä", self.text_exclude)
-        root.addWidget(g)
+        time_form.addRow("Ei sisällä sanoja", self.text_exclude)
+        section("more", "Lisää ehtoja", time_group)
 
         # --- Järjestys
         g = QGroupBox("Järjestys")
@@ -354,7 +365,7 @@ class FilterPanel(QWidget):
         af.addRow(self.arc_harmonic)
         f.addRow(self.arc_box)
         self.sort_mode.currentIndexChanged.connect(self._update_sort_visibility)
-        root.addWidget(g)
+        section("sort", "Järjestys", g)
 
         # --- Rajaus
         g = QGroupBox("Pituus / määrä")
@@ -363,21 +374,7 @@ class FilterPanel(QWidget):
         self.target_minutes = opt_spin(0, 1440, " min")
         f.addRow("Kappalemäärä enint.", self.target_count)
         f.addRow("Kokonaiskesto", self.target_minutes)
-        root.addWidget(g)
-
-        # --- Napit
-        row = QHBoxLayout()
-        self.reset_btn = QPushButton("Tyhjennä suodattimet")
-        self.reset_btn.clicked.connect(lambda: self.set_recipe(Recipe()))
-        self.build_btn = QPushButton("Luo lista ▶")
-        self.build_btn.setDefault(True)
-        self.build_btn.setMinimumHeight(34)
-        self.build_btn.setStyleSheet("font-weight: bold;")
-        self.build_btn.clicked.connect(self.build_requested.emit)
-        row.addWidget(self.reset_btn)
-        row.addWidget(self.build_btn, 1)
-        root.addLayout(row)
-        root.addStretch(1)
+        section("limit", "Setin pituus", g)
 
         for le in (self.text_search, self.text_exclude, self.comment_contains, self.comment_excludes):
             le.returnPressed.connect(self.build_requested.emit)
@@ -388,6 +385,18 @@ class FilterPanel(QWidget):
     def set_library(self, lib: Library) -> None:
         self.genres.set_items(lib.genres())
         self.mytags.set_items(lib.mytags())
+
+    def reset(self) -> None:
+        """Tyhjentää suodattimet mutta säilyttää järjestyksen ja setin pituuden."""
+        keep = self.get_recipe()
+        fresh = Recipe(
+            sort_mode=keep.sort_mode, sort_descending=keep.sort_descending,
+            harmonic_bpm_direction=keep.harmonic_bpm_direction, arc_start=keep.arc_start,
+            arc_peak=keep.arc_peak, arc_end=keep.arc_end, arc_peak_position=keep.arc_peak_position,
+            arc_prefer_harmonic=keep.arc_prefer_harmonic, target_count=keep.target_count,
+            target_minutes=keep.target_minutes,
+        )
+        self.set_recipe(fresh)
 
     def _update_sort_visibility(self) -> None:
         mode = self.sort_mode.currentData()
@@ -489,3 +498,73 @@ class FilterPanel(QWidget):
         set_spin(self.target_count, r.target_count)
         set_spin(self.target_minutes, r.target_minutes)
         self._update_sort_visibility()
+
+
+# ---------------------------------------------------------------- painikkeiden tekstit
+
+def _fmt_num(v: float) -> str:
+    return f"{v:g}"
+
+
+def _first_plus(items: list[str]) -> str:
+    return items[0] + (f" +{len(items) - 1}" if len(items) > 1 else "")
+
+
+def section_summary(key: str, r: Recipe) -> str | None:
+    """Lyhyt kuvaus aktiivisesta suodattimesta painikkeeseen (None = ei aktiivinen)."""
+    if key == "bpm":
+        if r.bpm_min is None and r.bpm_max is None:
+            return None
+        lo = _fmt_num(r.bpm_min) if r.bpm_min is not None else "…"
+        hi = _fmt_num(r.bpm_max) if r.bpm_max is not None else "…"
+        return f"BPM {lo}–{hi}" + (" ½×2" if r.bpm_half_double else "")
+    if key == "key":
+        if not r.keys:
+            return None
+        keys = sorted({to_camelot(k) or k for k in r.keys}, key=lambda c: (int(c[:-1]), c[-1]))
+        txt = ", ".join(keys[:3]) + (f" +{len(keys) - 3}" if len(keys) > 3 else "")
+        return txt + (" ≈" if r.keys_compatible or r.keys_compatible_extended else "")
+    if key == "genre":
+        parts = []
+        if r.genres_include:
+            parts.append(_first_plus(r.genres_include))
+        if r.genres_exclude:
+            parts.append("ei " + _first_plus(r.genres_exclude))
+        return " · ".join(parts) or None
+    if key == "rating":
+        parts = []
+        if r.rating_min:
+            parts.append(f"★{r.rating_min}+")
+        if r.rating_max is not None:
+            parts.append(f"≤★{r.rating_max}")
+        if r.colours_include or r.colours_exclude:
+            parts.append(f"väri {len(r.colours_include) + len(r.colours_exclude)}")
+        return " ".join(parts) or None
+    if key == "tags":
+        parts = []
+        if r.mytags_include:
+            parts.append(_first_plus(r.mytags_include))
+        if r.mytags_exclude:
+            parts.append("ei " + _first_plus(r.mytags_exclude))
+        if r.comment_contains or r.comment_excludes:
+            parts.append("kommentti")
+        return " · ".join(parts) or None
+    if key == "more":
+        n = sum(
+            1 for v in (
+                r.year_min, r.year_max, r.added_from, r.added_to, r.added_last_days,
+                r.duration_min, r.duration_max, r.play_count_min, r.play_count_max,
+                r.text_exclude or None,
+            ) if v is not None
+        )
+        return f"Lisää · {n}" if n else None
+    if key == "sort":
+        return None if r.sort_mode == "none" else SORT_MODES.get(r.sort_mode, r.sort_mode)
+    if key == "limit":
+        parts = []
+        if r.target_minutes:
+            parts.append(f"{r.target_minutes} min")
+        if r.target_count:
+            parts.append(f"{r.target_count} kpl")
+        return " / ".join(parts) or None
+    return None
