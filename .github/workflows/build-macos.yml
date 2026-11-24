@@ -31,9 +31,16 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: QT_QPA_PLATFORM=offscreen python -m pytest -q
       - run: pyinstaller --noconfirm --clean setinrakentaja.spec
+      - name: Käynnistystesti
+        run: |
+          QT_QPA_PLATFORM=offscreen ./dist/Setinrakentaja.app/Contents/MacOS/Setinrakentaja tests/data/esimerkki_rekordbox.xml &
+          PID=$!
+          sleep 10
+          kill -0 $PID && echo "Sovellus käynnistyi" && kill $PID
       - name: Pakkaa
         run: ditto -c -k --sequesterRsrc --keepParent dist/Setinrakentaja.app Setinrakentaja-macOS.zip
       - uses: actions/upload-artifact@v4
         with:
           name: Setinrakentaja-macOS
           path: Setinrakentaja-macOS.zip
+          retention-days: 90

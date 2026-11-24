@@ -19,15 +19,21 @@ valmiit soittolistat (kansioineen) uutena `rekordbox.xml`-tiedostona Rekordboxii
 
 ### A) Valmis sovellus (helpoin)
 
-1. Avaa GitHubissa repon **Actions**-välilehti ja sieltä uusin
-   **Rakenna macOS-sovellus** -ajo.
-2. Lataa sivun alaosasta `Setinrakentaja-macOS`-paketti ja pura zip.
+1. Avaa https://github.com/markusket/DJ-setset/actions ja valitse uusin vihreä (✓)
+   **Rakenna macOS-sovellus** -ajo. Sinun on oltava kirjautuneena GitHubiin.
+2. Lataa sivun alaosan **Artifacts**-kohdasta `Setinrakentaja-macOS`. Purkaminen voi
+   vaatia kaksi kertaa: ensin ladattu zip ja sen sisältä `Setinrakentaja-macOS.zip`.
 3. Siirrä `Setinrakentaja.app` Ohjelmat-kansioon (Applications).
-4. **Ensimmäisellä kerralla** napsauta sovellusta hiiren oikealla ja valitse **Avaa**.
-   Sovellusta ei ole allekirjoitettu Applen kehittäjätunnuksella, joten macOS kysyy
-   vahvistusta.
+4. **Ensimmäinen avaus:** sovellusta ei ole allekirjoitettu Applen kehittäjätunnuksella,
+   joten macOS estää sen aluksi. Avaa se näin:
+   - Kaksoisnapsauta sovellusta ja sulje varoitus.
+   - Avaa **Järjestelmäasetukset > Tietosuoja ja turvallisuus**. Selaa alas ja valitse
+     **Avaa silti** (Open Anyway) Setinrakentajan kohdalla.
    - Jos macOS sanoo, että sovellus on vahingoittunut, aja Päätteessä:
      `xattr -dr com.apple.quarantine /Applications/Setinrakentaja.app`
+
+Valmis sovellus on rakennettu Apple Silicon -koneille (M1–M4). Intel-Macilla rakenna
+sovellus itse (kohta B).
 
 ### B) Rakenna itse
 
@@ -36,8 +42,8 @@ Tarvitset Python 3.10 tai uudemman. Tarkista versio Päätteessä komennolla
 (`brew install python`).
 
 ```bash
-git clone https://github.com/markusket/setinrakentaja.git
-cd setinrakentaja
+git clone https://github.com/markusket/DJ-setset.git
+cd DJ-setset
 ./build_mac.sh
 ```
 
